@@ -1,0 +1,23 @@
+enable
+configure terminal
+!
+hostname SW3
+!
+vlan 99
+name native
+!
+vlan 10
+name RRHH
+vlan 20
+name SALES
+!
+vlan 30
+name AUDIT
+!
+vlan 40
+name ADMIN
+!
+interface range et0/0-1
+switchport trunk encapsulation dot1q
+switchport trunk native vlan 99
+switchport mode trunk
