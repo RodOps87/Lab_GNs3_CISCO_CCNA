@@ -1,0 +1,74 @@
+enable
+configure terminal
+!
+hostname CORE2
+!
+vlan 10,20
+vlan 99
+name native
+vlan 25
+name management
+!
+interface vlan 25
+no shutdown
+ip address 192.168.25.12 255.255.255.0
+!
+spanning-tree mode rapid
+!
+interface range g0/1
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allow vlan 1,10,20,25,99
+switchport nonegotiate
+!
+ip domain-name cisco.com
+crypto key generate rsa modulus 1024
+ip ssh version 2
+username cisco secret Cisco
+enable secret Cisco
+!
+line vty 0 4
+transport input ssh
+login local
+!
+
+##Port chaneel
+default interface g0/3
+interfaceg0/3
+shutdown
+interface g0/3
+channel-group 2 mode active
+!
+interface port-channel 2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allow vlan 1,10,20,25,99
+switchport nonegotiate
+
+
+default interface g0/0
+interfaceg0/0
+shutdown
+interface g0/0
+channel-group 2 mode active
+!
+interface port-channel 2
+switchport trunk encapsulation dot1q
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allow vlan 1,10,20,25,99
+switchport nonegotiate
+
+##Port Channel a nivel de capa 3
+!
+default interface range g3/1-2
+!
+interface range g3/1-2
+no switchport
+channel-group 3 mode active
+!
+interface port-channel 3
+no switchport
+ip address 10.1.1.2 255.255.255.252
