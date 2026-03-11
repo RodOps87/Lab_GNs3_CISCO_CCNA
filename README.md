@@ -1,4 +1,5 @@
 # Lab_GNs3_CISCO_CCNA
+## 🛠 LABORATORIO 1 VLANS , SPANNING TREE , PROTOCOLOS CAPA2
 
 ![Topología de VLANs](SWITCH_VLANS.png)
 
@@ -13,3 +14,6 @@
 
 ---
 > **Nota de Seguridad:** Se recomienda desactivar **DTP** y **CDP** en interfaces que conectan a dispositivos finales (PCs) para evitar fugas de información y ataques de VLAN Hopping.
+
+## 🛠 LABORATORIO 2  PORT CHANNEL, SSH, HARDENING
+
