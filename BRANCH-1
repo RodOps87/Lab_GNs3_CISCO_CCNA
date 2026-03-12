@@ -1,0 +1,35 @@
+enable
+configure terminal
+!
+hostname BRANCH-1
+!
+ip domain-name cisco.com
+crypto key generate rsa modulus 1024
+ip ssh version 2
+username cisco secret Cisco
+enable secret Cisco
+!
+line vty 0 4
+transport input ssh
+login local
+!
+interface f0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+!
+interface g1/0
+ip address 10.0.0.1 255.255.255.0
+no shutdown
+!
+!Enrutamiento estatico
+ip route 192.168.10.0 255.255.255.0 10.0.0.2
+ip route 10.1.1.0 255.255.255.0 10.0.0.2
+ip route 192.168.2.0 255.255.255.0 10.0.0.2
+!
+interface g2/0
+ip address 10.4.4.1 255.255.255.0
+no shutdown
+!
+ip route 192.168.2.0 255.255.255.0 10.4.4.2
+ip route 10.2.2.0 255.255.255.0 10.0.0.2
+
